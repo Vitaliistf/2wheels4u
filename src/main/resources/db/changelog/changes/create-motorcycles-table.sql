@@ -5,5 +5,6 @@ CREATE TABLE IF NOT EXISTS motorcycles
     manufacturer VARCHAR(255)                      NOT NULL,
     inventory    INT                               NOT NULL,
     fee          DECIMAL(10, 2)                    NOT NULL,
-    type         VARCHAR(255)                      NOT NULL
+    type         VARCHAR(255)                      NOT NULL,
+    is_deleted   BOOLEAN                           NOT NULL DEFAULT FALSE
 );

@@ -44,6 +44,10 @@ public class Motorcycle {
     @Column(name = "fee")
     private BigDecimal fee;
 
+    @Basic
+    @Column(name = "is_deleted")
+    private boolean deleted;
+
     public enum Type {
         ENDURO,
         STREET,

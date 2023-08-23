@@ -11,15 +11,10 @@ public class EmailValidator implements ConstraintValidator<ValidEmail, String> {
     private static final String EMAIL_PATTERN =
             "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+"
             + "(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
-    private Pattern pattern;
-
-    @Override
-    public void initialize(ValidEmail constraintAnnotation) {
-        pattern = Pattern.compile(EMAIL_PATTERN);
-    }
+    private final Pattern pattern = Pattern.compile(EMAIL_PATTERN);
 
     @Override
     public boolean isValid(String email, ConstraintValidatorContext context) {
-        return !email.isEmpty() && pattern.matcher(email).matches();
+        return !(email == null) && !email.isEmpty() && pattern.matcher(email).matches();
     }
 }

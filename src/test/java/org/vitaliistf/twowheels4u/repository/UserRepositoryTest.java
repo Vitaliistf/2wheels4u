@@ -34,7 +34,7 @@ class UserRepositoryTest {
 
     @Test
     @Sql("/scripts/init_users.sql")
-    void shouldReturnUserWithEmail() {
+    void testReturnUserWithEmail() {
         User actual = userRepository.findByEmail(EMAIL).orElseThrow(NoSuchElementException::new);
         assertEquals(EMAIL, actual.getEmail());
         assertEquals(PASSWORD, actual.getPassword());
@@ -43,14 +43,14 @@ class UserRepositoryTest {
 
     @Test
     @Sql("/scripts/init_users.sql")
-    void shouldNotFindUserWithWrongEmail() {
+    void testNotFindUserWithWrongEmail() {
         assertThrows(NoSuchElementException.class,
                 () -> userRepository.findByEmail(WRONG_EMAIL).orElseThrow(), EXCEPTION_EXPECTED);
     }
 
     @Test
     @Sql("/scripts/init_users.sql")
-    void shouldNotFoundUserAfterDelete() {
+    void testNotFoundUserAfterDelete() {
         userRepository.deleteAll();
         assertThrows(NoSuchElementException.class,
                 () -> userRepository.findByEmail(EMAIL).orElseThrow(), EXCEPTION_EXPECTED);

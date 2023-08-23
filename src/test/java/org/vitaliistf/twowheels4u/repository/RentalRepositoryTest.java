@@ -50,7 +50,7 @@ class RentalRepositoryTest {
 
     @Test
     @Sql("/scripts/init_rentals.sql")
-    void shouldFindByUserIdAndIsActiveTrue() {
+    void testFindByUserIdAndIsActiveTrue() {
         List<Rental> actual = rentalRepository.findByIdAndIsActive(EXPECTED_ID, ACTIVE);
         assertEquals(EXPECTED_SIZE, actual.size());
         assertEquals(EXPECTED_ID, actual.get(POSITION).getUser().getId());
@@ -65,7 +65,7 @@ class RentalRepositoryTest {
 
     @Test
     @Sql("/scripts/init_rentals.sql")
-    void shouldFindByUserIdAndIsActiveTrueWrongParameters() {
+    void testFindByUserIdAndIsActiveTrueWrongParameters() {
         List<Rental> actual = rentalRepository.findByIdAndIsActive(EXPECTED_ID, ACTIVE);
         assertNotEquals(NOT_EXPECTED_SIZE, actual.size());
         assertNotEquals(NOT_EXPECTED_ID, actual.get(POSITION).getUser().getId());
@@ -80,7 +80,7 @@ class RentalRepositoryTest {
 
     @Test
     @Sql("/scripts/init_rentals.sql")
-    void shouldFindByUserIdAndIsActiveFalse() {
+    void testFindByUserIdAndIsActiveFalse() {
         List<Rental> actual = rentalRepository.findByIdAndIsActive(EXPECTED_ID, NOT_ACTIVE);
         assertEquals(EXPECTED_SIZE, actual.size());
         assertEquals(EXPECTED_ID, actual.get(POSITION).getUser().getId());
@@ -95,7 +95,7 @@ class RentalRepositoryTest {
 
     @Test
     @Sql("/scripts/init_rentals.sql")
-    void shouldFindOverdueRental() {
+    void testFindOverdueRental() {
         LocalDateTime now = LocalDateTime.now();
         List<Rental> actual = rentalRepository.findOverdueRentals(now);
         assertEquals(EXPECTED_SIZE, actual.size());
@@ -104,7 +104,7 @@ class RentalRepositoryTest {
 
     @Test
     @Sql("/scripts/init_rentals.sql")
-    void shouldFindOverdueRentalWrongParameters() {
+    void testFindOverdueRentalWrongParameters() {
         LocalDateTime now = LocalDateTime.now();
         List<Rental> actual = rentalRepository.findOverdueRentals(now);
         assertNotEquals(NOT_EXPECTED_SIZE, actual.size());
@@ -113,7 +113,7 @@ class RentalRepositoryTest {
 
     @Test
     @Sql("/scripts/init_rentals.sql")
-    void shouldNotFindOverdueRental() {
+    void testNotFindOverdueRental() {
         LocalDateTime now = LocalDateTime.of(OVERDUE_YEAR, OVERDUE_TEST_DIGIT, OVERDUE_TEST_DIGIT,
                 OVERDUE_TEST_DIGIT, OVERDUE_TEST_DIGIT, OVERDUE_TEST_DIGIT);
         List<Rental> actual = rentalRepository.findOverdueRentals(now);

@@ -57,17 +57,17 @@ public class JwtTokenService extends GenericFilterBean {
                 .compact();
     }
 
-    private Authentication getAuthentication(String token) {
+    public Authentication getAuthentication(String token) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(getUsername(token));
         return new UsernamePasswordAuthenticationToken(userDetails, "",
                 userDetails.getAuthorities());
     }
 
-    private String getUsername(String token) {
+    public String getUsername(String token) {
         return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
     }
 
-    private String resolveToken(HttpServletRequest request) {
+    public String resolveToken(HttpServletRequest request) {
         String bearToken = request.getHeader(HEADER);
         if (bearToken != null && bearToken.startsWith(BEARER_TOKEN_START)) {
             return bearToken.substring(HEAD);
@@ -86,7 +86,7 @@ public class JwtTokenService extends GenericFilterBean {
         filterChain.doFilter(servletRequest, servletResponse);
     }
 
-    private boolean validateToken(String token) {
+    public boolean validateToken(String token) {
         try {
             Jws<Claims> claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
             return !claims.getBody().getExpiration().before(new Date());

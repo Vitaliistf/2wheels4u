@@ -36,7 +36,7 @@ class MotorcycleRepositoryTest {
 
     @Test
     @Sql("/scripts/init_motorcycles.sql")
-    public void shouldDelete() {
+    public void testDelete() {
         motorcycleRepository.safeDelete(ID_FOR_DELETION);
         Optional<Motorcycle> actual = motorcycleRepository.findByIdAndDeletedFalse(ID_FOR_DELETION);
         assertFalse(actual.isPresent());
@@ -44,7 +44,7 @@ class MotorcycleRepositoryTest {
 
     @Test
     @Sql("/scripts/init_motorcycles.sql")
-    public void shouldFindAll() {
+    public void testFindAll() {
         Pageable pageable = PageRequest.of(0, 10);
         Page<Motorcycle> actual = motorcycleRepository.findAllByDeletedFalse(pageable);
         Assertions.assertEquals(SIZE, actual.getTotalElements());
@@ -52,7 +52,7 @@ class MotorcycleRepositoryTest {
 
     @Test
     @Sql("/scripts/init_motorcycles.sql")
-    public void shouldNotIncludeDeleted() {
+    public void testNotIncludeDeleted() {
         Pageable pageable = PageRequest.of(0, 10);
         Page<Motorcycle> actual = motorcycleRepository.findAllByDeletedFalse(pageable);
         assertNotEquals(WRONG_SIZE, actual.getTotalElements());
@@ -60,7 +60,7 @@ class MotorcycleRepositoryTest {
 
     @Test
     @Sql("/scripts/init_motorcycles.sql")
-    public void shouldNotFindById() {
+    public void testNotFindById() {
         Optional<Motorcycle> actual =
                 motorcycleRepository.findByIdAndDeletedFalse(ID_OF_ALREADY_DELETED_MOTORCYCLE);
         assertFalse(actual.isPresent());

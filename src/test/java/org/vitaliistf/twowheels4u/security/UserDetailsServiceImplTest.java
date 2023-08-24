@@ -8,7 +8,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.vitaliistf.twowheels4u.models.User;
+import org.vitaliistf.twowheels4u.model.User;
 import org.vitaliistf.twowheels4u.service.UserService;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

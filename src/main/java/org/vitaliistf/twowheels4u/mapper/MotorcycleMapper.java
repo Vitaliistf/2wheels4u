@@ -4,7 +4,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.vitaliistf.twowheels4u.dto.request.MotorcycleRequestDto;
 import org.vitaliistf.twowheels4u.dto.response.MotorcycleResponseDto;
-import org.vitaliistf.twowheels4u.models.Motorcycle;
+import org.vitaliistf.twowheels4u.model.Motorcycle;
 
 @Mapper(config = MapperConfig.class)
 public interface MotorcycleMapper {

@@ -1,4 +1,4 @@
-package org.vitaliistf.twowheels4u.models;
+package org.vitaliistf.twowheels4u.model;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;

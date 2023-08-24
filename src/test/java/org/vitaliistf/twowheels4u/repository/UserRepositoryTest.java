@@ -7,8 +7,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.jdbc.Sql;
-import org.vitaliistf.twowheels4u.models.User;
-import org.vitaliistf.twowheels4u.repositories.UserRepository;
+import org.vitaliistf.twowheels4u.model.User;
 
 import java.util.NoSuchElementException;
 

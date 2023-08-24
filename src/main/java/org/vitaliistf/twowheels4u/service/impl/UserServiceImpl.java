@@ -8,8 +8,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.vitaliistf.twowheels4u.exception.UserAlreadyRegisteredException;
-import org.vitaliistf.twowheels4u.models.User;
-import org.vitaliistf.twowheels4u.repositories.UserRepository;
+import org.vitaliistf.twowheels4u.model.User;
+import org.vitaliistf.twowheels4u.repository.UserRepository;
 import org.vitaliistf.twowheels4u.service.UserService;
 
 @Service

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.vitaliistf.twowheels4u.models.Motorcycle;
+import org.vitaliistf.twowheels4u.model.Motorcycle;
 
 public interface MotorcycleService {
     Motorcycle save(Motorcycle motorcycle);

@@ -15,8 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.jdbc.Sql;
-import org.vitaliistf.twowheels4u.models.Motorcycle;
-import org.vitaliistf.twowheels4u.repositories.MotorcycleRepository;
+import org.vitaliistf.twowheels4u.model.Motorcycle;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)

@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.vitaliistf.twowheels4u.dto.request.MotorcycleRequestDto;
 import org.vitaliistf.twowheels4u.dto.response.MotorcycleResponseDto;
 import org.vitaliistf.twowheels4u.mapper.MotorcycleMapper;
-import org.vitaliistf.twowheels4u.models.Motorcycle;
+import org.vitaliistf.twowheels4u.model.Motorcycle;
 import org.vitaliistf.twowheels4u.service.MotorcycleService;
 import org.vitaliistf.twowheels4u.util.RequestParamParser;
 

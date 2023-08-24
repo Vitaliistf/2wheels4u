@@ -1,4 +1,4 @@
-package org.vitaliistf.twowheels4u.repositories;
+package org.vitaliistf.twowheels4u.repository;
 
 import java.util.Optional;
 import org.springframework.data.domain.Page;
@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import org.vitaliistf.twowheels4u.models.Motorcycle;
+import org.vitaliistf.twowheels4u.model.Motorcycle;
 
 @Repository
 public interface MotorcycleRepository extends JpaRepository<Motorcycle, Long> {

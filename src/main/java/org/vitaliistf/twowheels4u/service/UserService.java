@@ -1,7 +1,7 @@
 package org.vitaliistf.twowheels4u.service;
 
 import java.util.List;
-import org.vitaliistf.twowheels4u.models.User;
+import org.vitaliistf.twowheels4u.model.User;
 
 public interface UserService {
     User save(User user);

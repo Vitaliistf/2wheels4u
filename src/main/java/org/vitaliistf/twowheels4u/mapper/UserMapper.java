@@ -3,7 +3,7 @@ package org.vitaliistf.twowheels4u.mapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.vitaliistf.twowheels4u.dto.response.UserResponseDto;
-import org.vitaliistf.twowheels4u.models.User;
+import org.vitaliistf.twowheels4u.model.User;
 
 @Mapper(config = MapperConfig.class)
 public interface UserMapper {

@@ -8,8 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.vitaliistf.twowheels4u.models.Motorcycle;
-import org.vitaliistf.twowheels4u.repositories.MotorcycleRepository;
+import org.vitaliistf.twowheels4u.model.Motorcycle;
+import org.vitaliistf.twowheels4u.repository.MotorcycleRepository;
 import org.vitaliistf.twowheels4u.service.MotorcycleService;
 
 @Service

@@ -7,8 +7,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.jdbc.Sql;
-import org.vitaliistf.twowheels4u.models.Rental;
-import org.vitaliistf.twowheels4u.repositories.RentalRepository;
+import org.vitaliistf.twowheels4u.model.Rental;
 
 import java.time.LocalDateTime;
 import java.util.List;

@@ -24,7 +24,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.GenericFilterBean;
 import org.vitaliistf.twowheels4u.exception.AuthenticationException;
-import org.vitaliistf.twowheels4u.models.User;
+import org.vitaliistf.twowheels4u.model.User;
 
 @RequiredArgsConstructor
 @Component

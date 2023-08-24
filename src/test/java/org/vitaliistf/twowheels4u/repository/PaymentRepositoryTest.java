@@ -7,8 +7,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.jdbc.Sql;
-import org.vitaliistf.twowheels4u.models.Payment;
-import org.vitaliistf.twowheels4u.repositories.PaymentRepository;
+import org.vitaliistf.twowheels4u.model.Payment;
 
 import java.util.List;
 

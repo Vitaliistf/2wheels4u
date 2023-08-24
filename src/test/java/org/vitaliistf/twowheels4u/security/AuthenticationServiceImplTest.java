@@ -8,7 +8,7 @@ import org.mockito.Mockito;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.vitaliistf.twowheels4u.exception.AuthenticationException;
-import org.vitaliistf.twowheels4u.models.User;
+import org.vitaliistf.twowheels4u.model.User;
 import org.vitaliistf.twowheels4u.security.impl.AuthenticationServiceImpl;
 import org.vitaliistf.twowheels4u.service.UserService;
 

@@ -12,7 +12,7 @@ import org.vitaliistf.twowheels4u.dto.request.UserLoginRequestDto;
 import org.vitaliistf.twowheels4u.dto.request.UserRegisterRequestDto;
 import org.vitaliistf.twowheels4u.dto.response.UserResponseDto;
 import org.vitaliistf.twowheels4u.mapper.UserMapper;
-import org.vitaliistf.twowheels4u.models.User;
+import org.vitaliistf.twowheels4u.model.User;
 import org.vitaliistf.twowheels4u.security.AuthenticationService;
 import org.vitaliistf.twowheels4u.security.jwt.JwtTokenService;
 

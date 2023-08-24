@@ -9,7 +9,7 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.vitaliistf.twowheels4u.models.User.Role;
+import org.vitaliistf.twowheels4u.model.User.Role;
 import org.springframework.security.core.userdetails.User;
 import org.vitaliistf.twowheels4u.security.jwt.JwtTokenService;
 

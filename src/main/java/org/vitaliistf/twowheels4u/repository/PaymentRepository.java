@@ -1,9 +1,9 @@
-package org.vitaliistf.twowheels4u.repositories;
+package org.vitaliistf.twowheels4u.repository;
 
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import org.vitaliistf.twowheels4u.models.Payment;
+import org.vitaliistf.twowheels4u.model.Payment;
 
 @Repository
 public interface PaymentRepository extends JpaRepository<Payment, Long> {

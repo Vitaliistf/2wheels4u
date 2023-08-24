@@ -2,7 +2,7 @@ package org.vitaliistf.twowheels4u.controller;
 
 import jakarta.validation.Valid;
 import java.util.Map;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +17,7 @@ import org.vitaliistf.twowheels4u.security.AuthenticationService;
 import org.vitaliistf.twowheels4u.security.jwt.JwtTokenService;
 
 @RestController
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class AuthenticationController {
     private final AuthenticationService authenticationService;
     private final JwtTokenService jwtTokenService;

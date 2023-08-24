@@ -30,7 +30,7 @@ public class SecurityConfig {
         return http.cors(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth ->
-                        auth.requestMatchers(HttpMethod.POST, "/register", "login").permitAll()
+                        auth.requestMatchers(HttpMethod.POST, "/register", "/login").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/payments/success/{id}",
                                         "/payments/cancel/{id}").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/test",

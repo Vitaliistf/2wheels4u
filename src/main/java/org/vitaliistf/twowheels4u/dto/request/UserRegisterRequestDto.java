@@ -1,6 +1,7 @@
 package org.vitaliistf.twowheels4u.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.vitaliistf.twowheels4u.util.validation.PasswordMatch;
@@ -8,11 +9,12 @@ import org.vitaliistf.twowheels4u.util.validation.ValidEmail;
 import org.vitaliistf.twowheels4u.util.validation.ValidPassword;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @PasswordMatch(
         password = "password",
         passwordConfirmation = "repeatPassword"
 )
-@NoArgsConstructor
 public class UserRegisterRequestDto {
 
     @NotBlank(message = "Email cannot be empty or null.")

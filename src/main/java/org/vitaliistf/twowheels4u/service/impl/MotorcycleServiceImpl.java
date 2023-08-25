@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ import org.vitaliistf.twowheels4u.repository.MotorcycleRepository;
 import org.vitaliistf.twowheels4u.service.MotorcycleService;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class MotorcycleServiceImpl implements MotorcycleService {
 
     private final MotorcycleRepository motorcycleRepository;
@@ -37,7 +37,7 @@ public class MotorcycleServiceImpl implements MotorcycleService {
     @Override
     public Motorcycle findById(Long id) {
         return motorcycleRepository.findByIdAndDeletedFalse(id).orElseThrow(()
-                -> new NoSuchElementException("Can't find motorcycle with id: " + id));
+                -> new NoSuchElementException("Cannot find motorcycle with id: " + id));
     }
 
     @Override
@@ -71,6 +71,6 @@ public class MotorcycleServiceImpl implements MotorcycleService {
             motorcycle.setInventory(motorcycle.getInventory() - 1);
             return motorcycleRepository.save(motorcycle);
         }
-        throw new NoSuchElementException("Can't remove motorcycle with id: " + id);
+        throw new NoSuchElementException("Cannot remove motorcycle with id: " + id);
     }
 }

@@ -1,15 +1,16 @@
 package org.vitaliistf.twowheels4u.service.impl;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.vitaliistf.twowheels4u.model.Motorcycle;
 import org.vitaliistf.twowheels4u.repository.MotorcycleRepository;
+import org.vitaliistf.twowheels4u.repository.specification.SpecificationManager;
 import org.vitaliistf.twowheels4u.service.MotorcycleService;
 
 @Service
@@ -18,6 +19,8 @@ public class MotorcycleServiceImpl implements MotorcycleService {
 
     private final MotorcycleRepository motorcycleRepository;
 
+    private final SpecificationManager<Motorcycle> motorcycleSpecificationManager;
+
     @Override
     public Motorcycle save(Motorcycle motorcycle) {
         return motorcycleRepository.save(motorcycle);
@@ -25,8 +28,13 @@ public class MotorcycleServiceImpl implements MotorcycleService {
 
     @Override
     public List<Motorcycle> findAllByParams(Map<String, String> params) {
-        //TODO: complete this method
-        return Collections.emptyList();
+        Specification<Motorcycle> specification = null;
+        for (Map.Entry<String, String> entry : params.entrySet()) {
+            Specification<Motorcycle> sp = motorcycleSpecificationManager.get(entry.getKey(),
+                    entry.getValue().split(","));
+            specification = specification == null ? Specification.where(sp) : specification.and(sp);
+        }
+        return motorcycleRepository.findAll(specification);
     }
 
     @Override

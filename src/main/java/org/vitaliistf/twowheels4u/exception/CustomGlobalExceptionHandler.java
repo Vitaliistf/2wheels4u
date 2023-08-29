@@ -39,7 +39,7 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
     }
 
     @ExceptionHandler(UserAlreadyRegisteredException.class)
-    public ResponseEntity<ErrorResponse> notEnoughCoins(UserAlreadyRegisteredException ex) {
+    public ResponseEntity<ErrorResponse> userRegistered(UserAlreadyRegisteredException ex) {
         ErrorResponse body = new ErrorResponse(
                 HttpStatus.BAD_REQUEST.value(),
                 List.of(ex.getMessage()),

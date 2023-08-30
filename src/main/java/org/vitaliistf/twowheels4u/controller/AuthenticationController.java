@@ -15,6 +15,7 @@ import org.vitaliistf.twowheels4u.mapper.UserMapper;
 import org.vitaliistf.twowheels4u.model.User;
 import org.vitaliistf.twowheels4u.security.AuthenticationService;
 import org.vitaliistf.twowheels4u.security.jwt.JwtService;
+import org.vitaliistf.twowheels4u.service.NotificationService;
 
 @RestController
 @AllArgsConstructor
@@ -22,6 +23,7 @@ public class AuthenticationController {
     private final AuthenticationService authenticationService;
     private final JwtService jwtService;
     private final UserMapper userMapper;
+    private final NotificationService notificationService;
 
     @PostMapping("/register")
     public UserResponseDto register(@RequestBody @Valid UserRegisterRequestDto userRegisterDto) {
@@ -29,6 +31,11 @@ public class AuthenticationController {
                 userRegisterDto.getPassword(),
                 userRegisterDto.getFirstName(),
                 userRegisterDto.getLastName());
+
+        notificationService.sendMessageToAdmin(
+                "New user was registered with email: " + user.getEmail()
+        );
+
         return userMapper.toDto(user);
     }
 

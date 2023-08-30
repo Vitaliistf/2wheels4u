@@ -19,6 +19,7 @@ import org.vitaliistf.twowheels4u.dto.request.PaymentRequestDto;
 import org.vitaliistf.twowheels4u.dto.response.PaymentResponseDto;
 import org.vitaliistf.twowheels4u.mapper.PaymentMapper;
 import org.vitaliistf.twowheels4u.model.Payment;
+import org.vitaliistf.twowheels4u.service.NotificationService;
 import org.vitaliistf.twowheels4u.service.PaymentCalculationService;
 import org.vitaliistf.twowheels4u.service.PaymentService;
 import org.vitaliistf.twowheels4u.service.stripe.PaymentProviderService;
@@ -31,6 +32,7 @@ public class PaymentController {
     private final PaymentService paymentService;
     private final PaymentCalculationService paymentCalculationService;
     private final PaymentMapper paymentMapper;
+    private final NotificationService notificationService;
 
     @PostMapping
     public PaymentResponseDto createPaymentSession(
@@ -49,6 +51,15 @@ public class PaymentController {
         payment.setUrl(session.getUrl());
 
         payment = paymentService.save(payment);
+
+        notificationService.sendMessageToAdmin(
+                "Started payment session for rental with id: " + paymentRequestDto.getRentalId()
+        );
+        notificationService.sendPaymentMessageToUser(payment,
+                "You started payment session for rental with id: "
+                        + paymentRequestDto.getRentalId()
+        );
+
         return paymentMapper.toDto(payment);
     }
 
@@ -73,11 +84,19 @@ public class PaymentController {
     public PaymentResponseDto getSucceed(@PathVariable Long id) {
         Payment payment = paymentService.getById(id);
         payment.setStatus(Payment.Status.PAID);
+
+        notificationService.sendPaymentMessageToUser(payment,
+                "You successfully paid for your rent: " + payment.getRental().toString()
+        );
+
         return paymentMapper.toDto(paymentService.save(payment));
     }
 
     @GetMapping("/cancel/{id}")
     public PaymentResponseDto getCanceled(@PathVariable Long id) {
+        notificationService.sendPaymentMessageToUser(paymentService.getById(id),
+                "You cancel payment process. Please pay for your rent with id: " + id);
+
         return paymentMapper.toDto(paymentService.save(paymentService.getById(id)));
     }
 }

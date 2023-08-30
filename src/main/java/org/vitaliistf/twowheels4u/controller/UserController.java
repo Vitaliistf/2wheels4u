@@ -14,6 +14,7 @@ import org.vitaliistf.twowheels4u.dto.request.UserRequestDto;
 import org.vitaliistf.twowheels4u.dto.response.UserResponseDto;
 import org.vitaliistf.twowheels4u.mapper.UserMapper;
 import org.vitaliistf.twowheels4u.model.User;
+import org.vitaliistf.twowheels4u.service.NotificationService;
 import org.vitaliistf.twowheels4u.service.UserService;
 
 @RestController
@@ -22,11 +23,15 @@ import org.vitaliistf.twowheels4u.service.UserService;
 public class UserController {
     private final UserService userService;
     private final UserMapper userMapper;
+    private final NotificationService notificationService;
 
     @PutMapping("/{id}/role")
     public UserResponseDto updateRole(@PathVariable Long id, @RequestParam String role) {
         User userById = userService.findById(id);
         userById.setRole(User.Role.valueOf(role));
+
+        notificationService.sendMessageToAdmin(
+                "User with id: " + id + " was updated with role: " + role);
 
         return userMapper.toDto(userService.update(userById));
     }

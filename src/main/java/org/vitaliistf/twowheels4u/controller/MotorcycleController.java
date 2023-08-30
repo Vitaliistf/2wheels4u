@@ -22,6 +22,7 @@ import org.vitaliistf.twowheels4u.dto.response.MotorcycleResponseDto;
 import org.vitaliistf.twowheels4u.mapper.MotorcycleMapper;
 import org.vitaliistf.twowheels4u.model.Motorcycle;
 import org.vitaliistf.twowheels4u.service.MotorcycleService;
+import org.vitaliistf.twowheels4u.service.NotificationService;
 import org.vitaliistf.twowheels4u.util.RequestParamParser;
 
 @RestController
@@ -31,12 +32,18 @@ public class MotorcycleController {
     private final MotorcycleService motorcycleService;
     private final MotorcycleMapper motorcycleMapper;
     private final RequestParamParser requestParamParser;
+    private final NotificationService notificationService;
 
     @PostMapping
     public MotorcycleResponseDto add(@RequestBody MotorcycleRequestDto motorcycleRequestDto) {
         Motorcycle motorcycle = motorcycleService.save(
                 motorcycleMapper.toModel(motorcycleRequestDto)
         );
+
+        notificationService.sendMessageToAdmin(
+                "New motorcycle was created with id: " + motorcycle.getId()
+        );
+
         return motorcycleMapper.toDto(motorcycle);
     }
 
@@ -71,21 +78,34 @@ public class MotorcycleController {
         Motorcycle updatedMotorcycle = motorcycleService.update(
                 id, motorcycleMapper.toModel(motorcycleRequestDto)
         );
+
+        notificationService.sendMessageToAdmin(
+                "Motorcycle was updated by id: " + updatedMotorcycle.getId()
+        );
+
         return motorcycleMapper.toDto(updatedMotorcycle);
     }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         motorcycleService.delete(id);
+
+        notificationService.sendMessageToAdmin("Motorcycle was deleted by id: " + id);
     }
 
     @PostMapping("/add/{id}")
     public MotorcycleResponseDto addMotorcycleToInventory(@PathVariable Long id) {
+        notificationService.sendMessageToAdmin("Motorcycle was add to inventory by id: " + id);
+
         return motorcycleMapper.toDto(motorcycleService.addMotorcycleToInventory(id));
     }
 
     @DeleteMapping("/remove/{id}")
     public MotorcycleResponseDto removeMotorcycleFromInventory(@PathVariable Long id) {
+        notificationService.sendMessageToAdmin(
+                "Motorcycle was removed from inventory by id: " + id
+        );
+
         return motorcycleMapper.toDto(motorcycleService.removeMotorcycleFromInventory(id));
     }
 }

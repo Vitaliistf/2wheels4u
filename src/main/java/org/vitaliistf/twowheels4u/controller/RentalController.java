@@ -17,6 +17,7 @@ import org.vitaliistf.twowheels4u.dto.response.RentalResponseDto;
 import org.vitaliistf.twowheels4u.mapper.RentalMapper;
 import org.vitaliistf.twowheels4u.model.Rental;
 import org.vitaliistf.twowheels4u.model.User;
+import org.vitaliistf.twowheels4u.service.NotificationService;
 import org.vitaliistf.twowheels4u.service.RentalService;
 import org.vitaliistf.twowheels4u.service.UserService;
 
@@ -27,6 +28,7 @@ public class RentalController {
     private final RentalService rentalService;
     private final RentalMapper rentalMapper;
     private final UserService userService;
+    private final NotificationService notificationService;
 
     @PostMapping
     public RentalResponseDto add(Authentication authentication,
@@ -35,11 +37,15 @@ public class RentalController {
         User user = userService.findByEmail(authentication.getName());
         rentalForSave.setUser(user);
         Rental savedRental = rentalService.save(rentalForSave);
+
+        notificationService.sendSuccessfulRentMessage(savedRental);
+
         return rentalMapper.toDto(savedRental);
     }
 
     @PutMapping("/{id}/return")
     public RentalResponseDto returnRental(@PathVariable Long id) {
+        notificationService.sendMessageToAdmin("Car was returned by id: " + id);
         return rentalMapper.toDto(rentalService.returnRental(id));
     }
 

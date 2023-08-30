@@ -6,29 +6,22 @@ import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import jakarta.annotation.PostConstruct;
-import jakarta.servlet.FilterChain;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.ServletRequest;
-import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.util.Base64;
 import java.util.Date;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
-import org.springframework.web.filter.GenericFilterBean;
 import org.vitaliistf.twowheels4u.exception.AuthenticationException;
 import org.vitaliistf.twowheels4u.model.User;
 
 @RequiredArgsConstructor
 @Component
-public class JwtTokenService extends GenericFilterBean {
+public class JwtService {
     private static final String HEADER = "Authorization";
     private static final String BEARER_TOKEN_START = "Bearer ";
     private static final int HEAD = 7;
@@ -73,17 +66,6 @@ public class JwtTokenService extends GenericFilterBean {
             return bearToken.substring(HEAD);
         }
         return null;
-    }
-
-    @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
-                         FilterChain filterChain) throws IOException, ServletException {
-        String token = resolveToken((HttpServletRequest) servletRequest);
-        if (token != null && validateToken(token)) {
-            Authentication authentication = getAuthentication(token);
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-        }
-        filterChain.doFilter(servletRequest, servletResponse);
     }
 
     public boolean validateToken(String token) {

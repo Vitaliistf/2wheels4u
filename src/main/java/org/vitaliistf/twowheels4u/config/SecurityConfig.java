@@ -13,7 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.vitaliistf.twowheels4u.model.User;
-import org.vitaliistf.twowheels4u.security.jwt.JwtTokenService;
+import org.vitaliistf.twowheels4u.security.jwt.JwtFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -23,7 +23,7 @@ public class SecurityConfig {
     private static final String CUSTOMER = User.Role.CUSTOMER.name();
 
     private final UserDetailsService userDetailsService;
-    private final JwtTokenService jwtTokenService;
+    private final JwtFilter jwtFilter;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -77,7 +77,7 @@ public class SecurityConfig {
                 )
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .addFilterBefore(jwtTokenService, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .headers(h -> h.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable))
                 .httpBasic(AbstractHttpConfigurer::disable)
                 .userDetailsService(userDetailsService)

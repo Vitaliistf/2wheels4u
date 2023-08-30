@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.vitaliistf.twowheels4u.model.User.Role;
 import org.springframework.security.core.userdetails.User;
-import org.vitaliistf.twowheels4u.security.jwt.JwtTokenService;
+import org.vitaliistf.twowheels4u.security.jwt.JwtService;
 
 import java.lang.reflect.Field;
 
@@ -20,14 +20,14 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
-class JwtTokenServiceTest {
+class JwtServiceTest {
     private static final String EMAIL = "user1@mail.com";
     private static final String PASSWORD = "11111111";
     private static final long VALIDITY_IN_MILLISECONDS = 3600000L;
     private static final String SECRET = "secret";
 
     @MockBean
-    private JwtTokenService jwtTokenService;
+    private JwtService jwtService;
     private UserDetailsService userDetailsService;
     private String token;
 
@@ -35,18 +35,18 @@ class JwtTokenServiceTest {
     void setUp() throws ReflectiveOperationException {
         userDetailsService = Mockito.mock(UserDetailsService.class);
 
-        jwtTokenService = new JwtTokenService(userDetailsService);
+        jwtService = new JwtService(userDetailsService);
 
-        Field secretKey = JwtTokenService.class.getDeclaredField("secretKey");
+        Field secretKey = JwtService.class.getDeclaredField("secretKey");
         secretKey.setAccessible(true);
-        secretKey.set(jwtTokenService, SECRET);
+        secretKey.set(jwtService, SECRET);
 
-        Field validityInMilliseconds = JwtTokenService.class.
+        Field validityInMilliseconds = JwtService.class.
                 getDeclaredField("validityInMilliSeconds");
         validityInMilliseconds.setAccessible(true);
-        validityInMilliseconds.setLong(jwtTokenService, VALIDITY_IN_MILLISECONDS);
+        validityInMilliseconds.setLong(jwtService, VALIDITY_IN_MILLISECONDS);
 
-        token = jwtTokenService.createToken(EMAIL, Role.CUSTOMER);
+        token = jwtService.createToken(EMAIL, Role.CUSTOMER);
     }
 
     @Test
@@ -62,7 +62,7 @@ class JwtTokenServiceTest {
 
     @Test
     void testGetUsername() {
-        String actual = jwtTokenService.getUsername(token);
+        String actual = jwtService.getUsername(token);
         assertEquals(actual, EMAIL);
     }
 
@@ -73,7 +73,7 @@ class JwtTokenServiceTest {
                 .roles(Role.CUSTOMER.name())
                 .build();
         when(userDetailsService.loadUserByUsername(EMAIL)).thenReturn(userDetails);
-        Authentication actual = jwtTokenService.getAuthentication(token);
+        Authentication actual = jwtService.getAuthentication(token);
         assertNotNull(actual);
         assertTrue(actual.getPrincipal().toString().contains(EMAIL));
     }
@@ -83,14 +83,14 @@ class JwtTokenServiceTest {
         String bearerToken = "Bearer " + token;
         MockHttpServletRequest request = new MockHttpServletRequest();
         request.addHeader("Authorization", bearerToken);
-        String actual = jwtTokenService.resolveToken(request);
+        String actual = jwtService.resolveToken(request);
         assertNotNull(actual);
         assertEquals(actual, token);
     }
 
     @Test
     void testValidateToken() {
-        boolean actual = jwtTokenService.validateToken(token);
+        boolean actual = jwtService.validateToken(token);
         assertTrue(actual);
     }
 }

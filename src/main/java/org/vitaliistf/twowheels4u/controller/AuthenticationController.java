@@ -14,13 +14,13 @@ import org.vitaliistf.twowheels4u.dto.response.UserResponseDto;
 import org.vitaliistf.twowheels4u.mapper.UserMapper;
 import org.vitaliistf.twowheels4u.model.User;
 import org.vitaliistf.twowheels4u.security.AuthenticationService;
-import org.vitaliistf.twowheels4u.security.jwt.JwtTokenService;
+import org.vitaliistf.twowheels4u.security.jwt.JwtService;
 
 @RestController
 @AllArgsConstructor
 public class AuthenticationController {
     private final AuthenticationService authenticationService;
-    private final JwtTokenService jwtTokenService;
+    private final JwtService jwtService;
     private final UserMapper userMapper;
 
     @PostMapping("/register")
@@ -36,7 +36,7 @@ public class AuthenticationController {
     public ResponseEntity<Object> login(@RequestBody @Valid UserLoginRequestDto userLoginDto) {
         User user = authenticationService.login(userLoginDto.getEmail(),
                 userLoginDto.getPassword());
-        String token = jwtTokenService.createToken(user.getEmail(), user.getRole());
+        String token = jwtService.createToken(user.getEmail(), user.getRole());
         return new ResponseEntity<>(Map.of("token", token), HttpStatus.OK);
     }
 }

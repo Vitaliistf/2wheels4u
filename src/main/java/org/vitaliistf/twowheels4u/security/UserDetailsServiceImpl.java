@@ -2,7 +2,7 @@ package org.vitaliistf.twowheels4u.security;
 
 import static org.springframework.security.core.userdetails.User.withUsername;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -12,7 +12,7 @@ import org.vitaliistf.twowheels4u.model.User;
 import org.vitaliistf.twowheels4u.service.UserService;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final UserService userService;

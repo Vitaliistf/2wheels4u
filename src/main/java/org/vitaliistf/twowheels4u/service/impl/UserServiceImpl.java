@@ -3,7 +3,7 @@ package org.vitaliistf.twowheels4u.service.impl;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,7 +13,7 @@ import org.vitaliistf.twowheels4u.repository.UserRepository;
 import org.vitaliistf.twowheels4u.service.UserService;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;

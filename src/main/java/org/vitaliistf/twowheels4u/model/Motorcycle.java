@@ -12,11 +12,11 @@ import jakarta.persistence.Table;
 import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @Table(name = "motorcycles")
 public class Motorcycle {

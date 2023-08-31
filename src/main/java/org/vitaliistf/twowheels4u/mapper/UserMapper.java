@@ -21,6 +21,7 @@ public interface UserMapper {
     @Mapping(source = "password", target = "password")
     @Mapping(source = "firstName", target = "firstName")
     @Mapping(source = "lastName", target = "lastName")
+    @Mapping(ignore = true, target = "telegramId")
     @Mapping(ignore = true, target = "role")
     User toModel(UserRequestDto dto);
 }

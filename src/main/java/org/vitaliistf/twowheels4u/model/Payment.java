@@ -15,11 +15,11 @@ import jakarta.persistence.Table;
 import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Data
+@RequiredArgsConstructor
 @AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "payments")
 public class Payment {

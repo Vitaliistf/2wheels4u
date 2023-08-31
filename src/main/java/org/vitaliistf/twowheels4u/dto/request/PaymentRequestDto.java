@@ -2,12 +2,12 @@ package org.vitaliistf.twowheels4u.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.vitaliistf.twowheels4u.model.Payment;
 
 @Data
+@RequiredArgsConstructor
 @AllArgsConstructor
-@NoArgsConstructor
 public class PaymentRequestDto {
     private Long rentalId;
     private Payment.Type type;

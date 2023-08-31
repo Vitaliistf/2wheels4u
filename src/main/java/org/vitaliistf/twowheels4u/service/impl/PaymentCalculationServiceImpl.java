@@ -3,7 +3,7 @@ package org.vitaliistf.twowheels4u.service.impl;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.temporal.ChronoUnit;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.vitaliistf.twowheels4u.model.Motorcycle;
 import org.vitaliistf.twowheels4u.model.Payment;
@@ -13,7 +13,7 @@ import org.vitaliistf.twowheels4u.service.PaymentCalculationService;
 import org.vitaliistf.twowheels4u.service.RentalService;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class PaymentCalculationServiceImpl implements PaymentCalculationService {
     private static final double FINE_MULTIPLIER = 1.2;
 

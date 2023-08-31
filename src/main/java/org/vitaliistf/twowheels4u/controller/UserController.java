@@ -1,6 +1,9 @@
 package org.vitaliistf.twowheels4u.controller;
 
-import lombok.AllArgsConstructor;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,14 +22,19 @@ import org.vitaliistf.twowheels4u.service.UserService;
 
 @RestController
 @RequestMapping("/users")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
     private final UserMapper userMapper;
     private final NotificationService notificationService;
 
     @PutMapping("/{id}/role")
-    public UserResponseDto updateRole(@PathVariable Long id, @RequestParam String role) {
+    @Operation(summary = "Endpoint for updating the role of user by a manager.")
+    public UserResponseDto updateRole(
+            @Parameter(description = "User ID.")
+            @PathVariable Long id,
+            @Parameter(description = "Role (MANAGER, CUSTOMER).")
+            @RequestParam String role) {
         User userById = userService.findById(id);
         userById.setRole(User.Role.valueOf(role));
 
@@ -37,14 +45,18 @@ public class UserController {
     }
 
     @GetMapping("/me")
+    @Operation(summary = "Endpoint to get current user information.")
     public UserResponseDto getCurrentUser(Authentication authentication) {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         return userMapper.toDto(userService.findByEmail(userDetails.getUsername()));
     }
 
     @PutMapping("/me")
-    public UserResponseDto updateInfo(Authentication authentication,
-                                      @RequestBody UserRequestDto userRequestDto) {
+    @Operation(summary = "Endpoint to update current user information (except role).")
+    public UserResponseDto updateInfo(
+            Authentication authentication,
+            @Parameter(schema = @Schema(implementation = UserRequestDto.class))
+            @RequestBody UserRequestDto userRequestDto) {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         User userToUpdate = userService.findByEmail(userDetails.getUsername());
         User user = userMapper.toModel(userRequestDto);

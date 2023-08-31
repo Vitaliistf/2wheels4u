@@ -2,13 +2,13 @@ package org.vitaliistf.twowheels4u.service.impl;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.vitaliistf.twowheels4u.model.Payment;
 import org.vitaliistf.twowheels4u.repository.PaymentRepository;
 import org.vitaliistf.twowheels4u.service.PaymentService;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Service
 public class PaymentServiceImpl implements PaymentService {
     private final PaymentRepository paymentRepository;

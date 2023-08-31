@@ -3,7 +3,7 @@ package org.vitaliistf.twowheels4u.service.impl;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -14,7 +14,7 @@ import org.vitaliistf.twowheels4u.repository.specification.SpecificationManager;
 import org.vitaliistf.twowheels4u.service.MotorcycleService;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class MotorcycleServiceImpl implements MotorcycleService {
 
     private final MotorcycleRepository motorcycleRepository;

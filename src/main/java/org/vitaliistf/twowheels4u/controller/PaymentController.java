@@ -1,11 +1,14 @@
 package org.vitaliistf.twowheels4u.controller;
 
 import com.stripe.model.checkout.Session;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Valid;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +27,7 @@ import org.vitaliistf.twowheels4u.service.PaymentCalculationService;
 import org.vitaliistf.twowheels4u.service.PaymentService;
 import org.vitaliistf.twowheels4u.service.stripe.PaymentProviderService;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/payments")
 public class PaymentController {
@@ -35,7 +38,9 @@ public class PaymentController {
     private final NotificationService notificationService;
 
     @PostMapping
+    @Operation(summary = "Endpoint for creating a payment session.")
     public PaymentResponseDto createPaymentSession(
+            @Parameter(schema = @Schema(implementation = PaymentRequestDto.class))
             @Valid @RequestBody PaymentRequestDto paymentRequestDto) {
         Payment payment = paymentMapper.toModel(paymentRequestDto);
 
@@ -64,13 +69,18 @@ public class PaymentController {
     }
 
     @GetMapping
-    public List<PaymentResponseDto> getByUserId(@RequestParam Long userId) {
+    @Operation(summary = "Endpoint for getting payments by user ID.",
+            description = "Only managers are permitted.")
+    public List<PaymentResponseDto> getByUserId(
+            @Parameter(description = "User ID.", required = true)
+            @RequestParam Long userId) {
         return paymentService.getByUserId(userId).stream()
                 .map(paymentMapper::toDto)
                 .collect(Collectors.toList());
     }
 
     @GetMapping("/my-payments")
+    @Operation(summary = "Endpoint for getting current user payments.")
     public List<PaymentResponseDto> findAllMyPayments(Authentication authentication) {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         String userEmail = userDetails.getUsername();
@@ -81,7 +91,10 @@ public class PaymentController {
     }
 
     @GetMapping("/success/{id}")
-    public PaymentResponseDto getSucceed(@PathVariable Long id) {
+    @Operation(description = "Endpoint that is visited after successful payment.")
+    public PaymentResponseDto getSucceed(
+            @Parameter(description = "Payment ID.", required = true)
+            @PathVariable Long id) {
         Payment payment = paymentService.getById(id);
         payment.setStatus(Payment.Status.PAID);
 
@@ -93,7 +106,10 @@ public class PaymentController {
     }
 
     @GetMapping("/cancel/{id}")
-    public PaymentResponseDto getCanceled(@PathVariable Long id) {
+    @Operation(description = "Endpoint that is visited after declining payment.")
+    public PaymentResponseDto getCanceled(
+            @Parameter(description = "Payment ID.", required = true)
+            @PathVariable Long id) {
         notificationService.sendPaymentMessageToUser(paymentService.getById(id),
                 "You cancel payment process. Please pay for your rent with id: " + id);
 

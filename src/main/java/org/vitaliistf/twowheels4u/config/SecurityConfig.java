@@ -1,6 +1,6 @@
 package org.vitaliistf.twowheels4u.config;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -17,7 +17,7 @@ import org.vitaliistf.twowheels4u.security.jwt.JwtFilter;
 
 @Configuration
 @EnableWebSecurity
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class SecurityConfig {
     private static final String MANAGER = User.Role.MANAGER.name();
     private static final String CUSTOMER = User.Role.CUSTOMER.name();

@@ -1,6 +1,6 @@
 package org.vitaliistf.twowheels4u.security.impl;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.vitaliistf.twowheels4u.exception.AuthenticationException;
@@ -9,7 +9,7 @@ import org.vitaliistf.twowheels4u.security.AuthenticationService;
 import org.vitaliistf.twowheels4u.service.UserService;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class AuthenticationServiceImpl implements AuthenticationService {
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;

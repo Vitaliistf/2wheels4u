@@ -9,7 +9,6 @@ import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 import org.vitaliistf.twowheels4u.model.User;
 import org.vitaliistf.twowheels4u.repository.UserRepository;
 
@@ -19,18 +18,20 @@ public class NotificationBot extends TelegramLongPollingBot {
 
     private final UserRepository userRepository;
 
+    private final TelegramBotsApi telegramBotsApi;
+
     @Value("${telegram-bot-name}")
     private String botName;
 
     public NotificationBot(@Value("${telegram-bot-token}") String botToken,
-                           UserRepository userRepository) {
+                           UserRepository userRepository, TelegramBotsApi telegramBotsApi) {
         super(botToken);
         this.userRepository = userRepository;
+        this.telegramBotsApi = telegramBotsApi;
     }
 
     @PostConstruct
     public void init() throws TelegramApiException {
-        TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
         telegramBotsApi.registerBot(this);
     }
 

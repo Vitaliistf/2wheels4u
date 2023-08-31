@@ -3,7 +3,7 @@ package org.vitaliistf.twowheels4u.service.impl;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.vitaliistf.twowheels4u.model.Motorcycle;
 import org.vitaliistf.twowheels4u.model.Rental;
@@ -12,7 +12,7 @@ import org.vitaliistf.twowheels4u.service.MotorcycleService;
 import org.vitaliistf.twowheels4u.service.RentalService;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class RentalServiceImpl implements RentalService {
     private final RentalRepository rentalRepository;
     private final MotorcycleService motorcycleService;

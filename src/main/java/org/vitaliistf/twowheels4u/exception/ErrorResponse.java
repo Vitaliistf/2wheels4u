@@ -4,11 +4,11 @@ import java.time.LocalDateTime;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Data
+@RequiredArgsConstructor
 @AllArgsConstructor
-@NoArgsConstructor
 public class ErrorResponse {
     private int status;
     private List<String> errors;

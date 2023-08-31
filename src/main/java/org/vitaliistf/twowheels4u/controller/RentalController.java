@@ -1,8 +1,11 @@
 package org.vitaliistf.twowheels4u.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
 import java.util.stream.Collectors;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,7 +26,7 @@ import org.vitaliistf.twowheels4u.service.UserService;
 
 @RestController
 @RequestMapping("/rentals")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class RentalController {
     private final RentalService rentalService;
     private final RentalMapper rentalMapper;
@@ -31,8 +34,11 @@ public class RentalController {
     private final NotificationService notificationService;
 
     @PostMapping
-    public RentalResponseDto add(Authentication authentication,
-                                 @RequestBody RentalRequestDto rentalRequestDto) {
+    @Operation(summary = "Endpoint to add a rental.")
+    public RentalResponseDto add(
+            Authentication authentication,
+            @Parameter(schema = @Schema(implementation = RentalRequestDto.class))
+            @RequestBody RentalRequestDto rentalRequestDto) {
         Rental rentalForSave = rentalMapper.toModel(rentalRequestDto);
         User user = userService.findByEmail(authentication.getName());
         rentalForSave.setUser(user);
@@ -44,25 +50,38 @@ public class RentalController {
     }
 
     @PutMapping("/{id}/return")
-    public RentalResponseDto returnRental(@PathVariable Long id) {
+    @Operation(summary = "Endpoint to return a motorcycle from a rental.",
+            description = "Only managers are permitted, as the actual return date will be used "
+                    + "to calculate the price to pay.")
+    public RentalResponseDto returnRental(
+            @Parameter(description = "Rental ID")
+            @PathVariable Long id) {
         notificationService.sendMessageToAdmin("Car was returned by id: " + id);
         return rentalMapper.toDto(rentalService.returnRental(id));
     }
 
     @GetMapping
-    public List<RentalResponseDto> findAllByUserIdAndIsAlive(@RequestParam Long userId,
-                                                             @RequestParam boolean status) {
+    @Operation(summary = "Endpoint to find rentals by user ID and status.")
+    public List<RentalResponseDto> findAllByUserIdAndIsAlive(
+            @Parameter(description = "User ID.")
+            @RequestParam Long userId,
+            @Parameter(description = "Status (true or false).")
+            @RequestParam boolean status) {
         return rentalService.findByIdAndIsActive(userId, status).stream()
                 .map(rentalMapper::toDto)
                 .collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
-    public RentalResponseDto findById(@PathVariable Long id) {
+    @Operation(summary = "Endpoint to get a rental by ID.")
+    public RentalResponseDto findById(
+            @Parameter(description = "Rental ID.")
+            @PathVariable Long id) {
         return rentalMapper.toDto(rentalService.findById(id));
     }
 
     @GetMapping("/my-rentals")
+    @Operation(summary = "Endpoint to get all rentals for the current user.")
     public List<RentalResponseDto> findAllMyRentals(Authentication authentication) {
         return rentalService.findAll().stream()
                 .filter(r -> r.getUser().getEmail().equals(authentication.getName()))

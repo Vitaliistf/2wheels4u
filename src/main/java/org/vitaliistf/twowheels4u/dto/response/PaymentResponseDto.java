@@ -1,14 +1,13 @@
 package org.vitaliistf.twowheels4u.dto.response;
 
 import java.math.BigDecimal;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.vitaliistf.twowheels4u.model.Payment;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
+
 public class PaymentResponseDto {
     private Long id;
     private Payment.Status status;

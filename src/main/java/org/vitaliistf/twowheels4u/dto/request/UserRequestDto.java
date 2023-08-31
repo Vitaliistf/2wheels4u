@@ -2,11 +2,11 @@ package org.vitaliistf.twowheels4u.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Data
+@RequiredArgsConstructor
 @AllArgsConstructor
-@NoArgsConstructor
 public class UserRequestDto {
     private String email;
     private String password;

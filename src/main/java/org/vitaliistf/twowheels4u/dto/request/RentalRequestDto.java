@@ -3,11 +3,11 @@ package org.vitaliistf.twowheels4u.dto.request;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Data
+@RequiredArgsConstructor
 @AllArgsConstructor
-@NoArgsConstructor
 public class RentalRequestDto {
     private LocalDateTime returnDate;
     private LocalDateTime rentalDate;

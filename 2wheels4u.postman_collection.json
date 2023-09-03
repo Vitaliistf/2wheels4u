@@ -1,0 +1,977 @@
+{
+	"info": {
+		"_postman_id": "3212e435-3c2c-4b2d-b29e-348a6788eeb7",
+		"name": "2wheels4u",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26104168"
+	},
+	"item": [
+		{
+			"name": "Register user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\":\"deosplayt@gmail.com\", \"password\":\"111AAAaaa\", \"repeatPassword\":\"111AAAaaa\", \"firstName\":\"Vitalii\", \"lastName\":\"Stefaniv\"} "
+				},
+				"url": {
+					"raw": "http://localhost:8080/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login admin",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\":\"manager@mail.com\",\"password\":\"123Admin\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login customer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\":\"user@mail.com\",\"password\":\"1234User\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					]
+				},
+				"description": "for customer"
+			},
+			"response": []
+		},
+		{
+			"name": "Add motorcycle",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5hZ2VyQG1haWwuY29tIiwicm9sZXMiOiJNQU5BR0VSIiwiaWF0IjoxNjkzNzU5ODQxLCJleHAiOjE2OTM3NjM0NDF9.jT_6fXaN5hphc72HbpjvE4QNsgxMvTTO5PYNO3HBosE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"model\":\"S1000RR\", \"manufacturer\":\"BMW\", \"fee\":500, \"type\":\"SPORT\", \"inventory\":3}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/motorcycles",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"motorcycles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all motorcycles",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5hZ2VyQG1haWwuY29tIiwicm9sZXMiOiJNQU5BR0VSIiwiaWF0IjoxNjkzNzU5ODQxLCJleHAiOjE2OTM3NjM0NDF9.jT_6fXaN5hphc72HbpjvE4QNsgxMvTTO5PYNO3HBosE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/motorcycles",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"motorcycles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get motorcycles page with sorting",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5hZ2VyQG1haWwuY29tIiwicm9sZXMiOiJNQU5BR0VSIiwiaWF0IjoxNjkzNzU5ODQxLCJleHAiOjE2OTM3NjM0NDF9.jT_6fXaN5hphc72HbpjvE4QNsgxMvTTO5PYNO3HBosE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/motorcycles?page=0&count=5&sortBy=model",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"motorcycles"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "count",
+							"value": "5"
+						},
+						{
+							"key": "sortBy",
+							"value": "model"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get motorycles by params",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyQG1haWwuY29tIiwicm9sZXMiOiJDVVNUT01FUiIsImlhdCI6MTY5Mzc2MDEzMSwiZXhwIjoxNjkzNzYzNzMxfQ.e2llkJDNApDsYs2MqRiD3mMKQ-dRxjc7tZcC4Y6Gqf8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/motorcycles/by-params?model=CB600",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"motorcycles",
+						"by-params"
+					],
+					"query": [
+						{
+							"key": "model",
+							"value": "CB600"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get motorcycle by id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyQG1haWwuY29tIiwicm9sZXMiOiJDVVNUT01FUiIsImlhdCI6MTY5Mzc2MDEzMSwiZXhwIjoxNjkzNzYzNzMxfQ.e2llkJDNApDsYs2MqRiD3mMKQ-dRxjc7tZcC4Y6Gqf8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/motorcycles/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"motorcycles",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update motorcycle info",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5hZ2VyQG1haWwuY29tIiwicm9sZXMiOiJNQU5BR0VSIiwiaWF0IjoxNjkzNzU5ODQxLCJleHAiOjE2OTM3NjM0NDF9.jT_6fXaN5hphc72HbpjvE4QNsgxMvTTO5PYNO3HBosE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"model\":\"S1000RR\", \"manufacturer\":\"BMW\", \"fee\":500, \"type\":\"SPORT\", \"inventory\":3}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/motorcycles/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"motorcycles",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete motorcycle",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGljZUBnbWFpbC5jb20iLCJyb2xlcyI6WyJDVVNUT01FUiJdLCJpYXQiOjE2ODcxMTM4NzMsImV4cCI6MTY4NzExNzQ3M30.mZWM58AHJkAGnxSzho19d-96FMjPthh0z_wsokCbwec",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/motorcycles/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"motorcycles",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add motorcycle to inventory",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5hZ2VyQG1haWwuY29tIiwicm9sZXMiOiJNQU5BR0VSIiwiaWF0IjoxNjkzNzU5ODQxLCJleHAiOjE2OTM3NjM0NDF9.jT_6fXaN5hphc72HbpjvE4QNsgxMvTTO5PYNO3HBosE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/motorcycles/add/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"motorcycles",
+						"add",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove motorcycle from inventory",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5hZ2VyQG1haWwuY29tIiwicm9sZXMiOiJNQU5BR0VSIiwiaWF0IjoxNjkzNzU5ODQxLCJleHAiOjE2OTM3NjM0NDF9.jT_6fXaN5hphc72HbpjvE4QNsgxMvTTO5PYNO3HBosE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/motorcycles/remove/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"motorcycles",
+						"remove",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update user role",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5hZ2VyQG1haWwuY29tIiwicm9sZXMiOiJNQU5BR0VSIiwiaWF0IjoxNjkzNzU5ODQxLCJleHAiOjE2OTM3NjM0NDF9.jT_6fXaN5hphc72HbpjvE4QNsgxMvTTO5PYNO3HBosE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/2/role?role=MANAGER",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"2",
+						"role"
+					],
+					"query": [
+						{
+							"key": "role",
+							"value": "MANAGER"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update user info",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGljZUBnbWFpbC5jb20iLCJyb2xlcyI6WyJDVVNUT01FUiJdLCJpYXQiOjE2ODcxMTM4NzMsImV4cCI6MTY4NzExNzQ3M30.mZWM58AHJkAGnxSzho19d-96FMjPthh0z_wsokCbwec",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\":\"somemail@gmail.com\", \"password\":\"123AAAbbb\", \"firstName\":\"Name\", \"lastName\":\"Surname\"} "
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/me",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create rental",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGljZUBnbWFpbC5jb20iLCJyb2xlcyI6WyJDVVNUT01FUiJdLCJpYXQiOjE2ODcxMTQ1ODksImV4cCI6MTY4NzExODE4OX0.Hx_FqjIb0QuyASgGuyL-RC5i5gr7fYtqQpwQD_feTyo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"returnDate\":\"2023-08-30T00:30:31.246054\", \"rentalDate\":\"2023-08-29T00:30:31.246054\", \"motorcycleId\":2}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/rentals",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rentals"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Return rental",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGljZUBnbWFpbC5jb20iLCJyb2xlcyI6WyJDVVNUT01FUiJdLCJpYXQiOjE2ODcxMTQ1ODksImV4cCI6MTY4NzExODE4OX0.Hx_FqjIb0QuyASgGuyL-RC5i5gr7fYtqQpwQD_feTyo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/rentals/1/return",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rentals",
+						"1",
+						"return"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get rental status by user id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGljZUBnbWFpbC5jb20iLCJyb2xlcyI6WyJDVVNUT01FUiJdLCJpYXQiOjE2ODcxMTU4NzIsImV4cCI6MTY4NzExOTQ3Mn0.L_UJhqryJhh8swiHGL43hr4CmArukEr54b3-uM8C6S0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/rentals?userId=1&status=false",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rentals"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "1"
+						},
+						{
+							"key": "status",
+							"value": "false"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get rental",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGljZUBnbWFpbC5jb20iLCJyb2xlcyI6WyJDVVNUT01FUiJdLCJpYXQiOjE2ODcxMTQ1ODksImV4cCI6MTY4NzExODE4OX0.Hx_FqjIb0QuyASgGuyL-RC5i5gr7fYtqQpwQD_feTyo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/rentals/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rentals",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get rentals for current user",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJib2JAZ21haWwuY29tIiwicm9sZXMiOlsiTUFOQUdFUiJdLCJpYXQiOjE2ODcxMTUwOTgsImV4cCI6MTY4NzExODY5OH0.pI24zv1KoLhqC9EM8NYWUZEgbMeG7M9JZzsv4A2COBc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/rentals/my-rentals",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rentals",
+						"my-rentals"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get current user info",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGljZUBnbWFpbC5jb20iLCJyb2xlcyI6WyJDVVNUT01FUiJdLCJpYXQiOjE2ODcxMTQ1ODksImV4cCI6MTY4NzExODE4OX0.Hx_FqjIb0QuyASgGuyL-RC5i5gr7fYtqQpwQD_feTyo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/me",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create payment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGljZUBnbWFpbC5jb20iLCJyb2xlcyI6WyJDVVNUT01FUiJdLCJpYXQiOjE2ODcxMTQ1ODksImV4cCI6MTY4NzExODE4OX0.Hx_FqjIb0QuyASgGuyL-RC5i5gr7fYtqQpwQD_feTyo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"rentalId\":1, \"type\":\"PAYMENT\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/payments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"payments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get payments by user id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGljZUBnbWFpbC5jb20iLCJyb2xlcyI6WyJDVVNUT01FUiJdLCJpYXQiOjE2ODcxMTU4NzIsImV4cCI6MTY4NzExOTQ3Mn0.L_UJhqryJhh8swiHGL43hr4CmArukEr54b3-uM8C6S0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/payments?userId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"payments"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get current user payments",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGljZUBnbWFpbC5jb20iLCJyb2xlcyI6WyJDVVNUT01FUiJdLCJpYXQiOjE2ODcxMTU4NzIsImV4cCI6MTY4NzExOTQ3Mn0.L_UJhqryJhh8swiHGL43hr4CmArukEr54b3-uM8C6S0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/payments/my-payments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"payments",
+						"my-payments"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

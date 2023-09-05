@@ -82,7 +82,7 @@ changes in the condition of the motorcycles.
 - Testcontainers
 
 ## Project structure
-> The project has a Three-Tier Architecture:
+The project has a Three-Tier Architecture:
 
 | Layer                                  | Responsibilities                                                  | 
 |----------------------------------------|-------------------------------------------------------------------|
@@ -115,6 +115,7 @@ changes in the condition of the motorcycles.
 - Get stripe secret api key from [website](https://stripe.com/);
 - Set your credentials in [application.properties](src/main/resources/application.properties);
 - Set your credentials for tests in [application.properties](src/test/resources/application.properties);
+  > if you want to run tests, you should run docker before this.
 - Build the project: `mvn clean package`;
 - Press `run`;
 
@@ -133,4 +134,3 @@ changes in the condition of the motorcycles.
 >
 > Also, you can use postman collection defined in the [file](postman/2wheels4u.postman_collection.json)
   or by this [link](https://www.postman.com/orbital-module-technologist-20121380/workspace/public-projects/collection/26104168-3212e435-3c2c-4b2d-b29e-348a6788eeb7?action=share&creator=26104168).
-- if you want to run tests, you should run docker before this.

@@ -6,7 +6,7 @@ databaseChangeLog:
   - include:
       file: /db/changelog/changes/create-rentals-table.sql
   - include:
-      file: /db/changelog/changes/create_payments-table.sql
+      file: /db/changelog/changes/create-payments-table.sql
   - include:
       file: /db/changelog/changes/fill-motorcycles-table.sql
   - include:
